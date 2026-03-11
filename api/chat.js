@@ -1,9 +1,9 @@
-const Groq = require("groq-sdk");
+import Groq from "groq-sdk";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const conversations = {};
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -46,4 +46,4 @@ module.exports = async (req, res) => {
     console.error("Groq Error:", err.message);
     res.status(500).json({ error: "AI service failed. Try again." });
   }
-};
+}
